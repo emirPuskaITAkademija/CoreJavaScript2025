@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+<h2>Ovo je naš prvi JS kod napisan ikad na Java Programu</h2>
+<button onclick="onCurrentTimeButtonClick()">Prikaži trenutno vrijeme</button>
+<p id="demo"></p>
+</body>
+<script>
+    console.log("Pozdrav svima ...");
+
+    function onCurrentTimeButtonClick(){
+        console.log('Neko na button klikno..');
+        const paragraph = document.getElementById('demo');
+        const date = Date();
+        paragraph.innerHTML = date;
+        var ime = "Tarik";
+        name = "Faruk";
+        console.log(ime);
+        console.log(name);
+    }
+</script>
+</html>
