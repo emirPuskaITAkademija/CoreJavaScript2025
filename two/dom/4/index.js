@@ -80,3 +80,10 @@ const sumFunction = function sum(x1, x2) {
 }
 
 const sumFunction2 = (x1, x2) => x1 + x2;
+
+const noviDivElement = document.createElement("div")
+noviDivElement.innerHTML="DIV dodan preko JavaScript";
+noviDivElement.onclick = () =>{
+    alert("Klikno si na DIV dodan preko JS koda");
+};
+document.body.appendChild(noviDivElement);
