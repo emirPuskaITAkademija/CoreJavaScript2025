@@ -44,7 +44,39 @@ function onClassBChange() {
     let classBPoruka = poruke[i];
     for (let element of classBElements) {
         element.innerHTML = classBPoruka;
-        i = i===15 ? 8: i+1;
+        i = i === 15 ? 8 : i + 1;
         classBPoruka = poruke[i];
     }
 }
+
+// const classBChanger = function(){
+//     const classBElements = document.querySelectorAll('p.classB');
+//     const indeksPoruke = generateNumber(8, 15);
+//     console.log("Class B indeks poruke = " + indeksPoruke);
+//     let i = indeksPoruke;
+//     let classBPoruka = poruke[i];
+//     for (let element of classBElements) {
+//         element.innerHTML = classBPoruka;
+//         i = i===15 ? 8: i+1;
+//         classBPoruka = poruke[i];
+//     }
+// }
+
+const classBChangeHandler = () => {
+    const classBElements = document.querySelectorAll('p.classB');
+    const indeksPoruke = generateNumber(8, 15);
+    console.log("Class B indeks poruke = " + indeksPoruke);
+    let i = indeksPoruke;
+    let classBPoruka = poruke[i];
+    for (let element of classBElements) {
+        element.innerHTML = classBPoruka;
+        i = i === 15 ? 8 : i + 1;
+        classBPoruka = poruke[i];
+    }
+}
+
+const sumFunction = function sum(x1, x2) {
+    return x1 + x2;
+}
+
+const sumFunction2 = (x1, x2) => x1 + x2;
