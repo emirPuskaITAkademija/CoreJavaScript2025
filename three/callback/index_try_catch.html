@@ -52,6 +52,7 @@
     async function loadCountries(callback, errorCallback) {
         try {
             //await se uvijek koristi samo u async funkcijama i on tjera funkciju da čeka rezultat
+            // await kaže: "Ja hoću NE Promise<response> nego response i čekam te...
             const response = await fetch("http://localhost:8080/countries", {
                 method: "GET"
             });
@@ -59,7 +60,7 @@
             if (!response.ok) {
                 throw new Error(`HTTP greška! Status: ${response.status}`);
             }
-
+            // response.json -> Promise<responseJSONData> await -> ja čekam i neću ići dok ne dobijem responseJSONData
             const responseJSONData = await response.json();
             callback(responseJSONData);
         } catch (error) {
