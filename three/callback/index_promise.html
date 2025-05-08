@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX Demo</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<div id="countryDiv">
+    <p>Učitaj backend JSON a ne HTML preko AJAX</p>
+    <button onclick="loadOnClick()">Load Country Async</button>
+    <button onclick="fillSelect()">Select Country Option</button>
+</div>
+
+<select id="selectCountry">
+    <option>[none]</option>
+</select>
+
+<!-- Dodajemo HTML element za prikaz greške -->
+<p id="errorMessage" style="color: red; display: none;"></p>
+
+<script>
+    function loadOnClick(){
+        loadCountries(updateCountryDiv, showError);
+    }
+
+    function fillSelect(){
+        loadCountries(updateSelect, showError);
+    }
+
+    function updateCountryDiv(data){
+        const countryDiv = document.getElementById("countryDiv");
+        countryDiv.innerHTML = JSON.stringify(data, null, 2);
+    }
+
+    function updateSelect(data){
+        const select = document.getElementById("selectCountry");
+
+        // Čistimo prethodne opcije (osim prve)
+        select.innerHTML = "<option>[none]</option>";
+
+        // Iteracija kroz listu zemalja i dodavanje u <select> element
+        data.forEach(country => {
+            const option = document.createElement("option");
+            option.value = country;
+            option.textContent = country;
+            select.appendChild(option);
+        });
+    }
+
+    function loadCountries(callback, errorCallback) {
+        const promise =  fetch("http://localhost:8080/countries", {
+            method: "GET"
+        });
+
+        promise
+            .then(response => response.json())
+            .catch(error => errorCallback(error))
+            .then(responseJSONData => callback(responseJSONData))
+            .catch(error => errorCallback(error));
+    }
+
+    function showError(error) {
+        const errorMessage = document.getElementById("errorMessage");
+        errorMessage.textContent = `Greška: ${error.message}`;
+        errorMessage.style.display = "block";
+    }
+</script>
+
+</body>
+</html>

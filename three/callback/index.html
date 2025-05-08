@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX Demo</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<div id="countryDiv">
+    <p>Učitaj backend JSON a ne HTML preko AJAX</p>
+    <button onclick="loadOnClick()">Load Country Async</button>
+    <button onclick="fillSelect()">Select Country Option</button>
+</div>
+<select id="selectCountry">
+    <option>[none]</option>
+</select>
+<script>
+    function loadOnClick(){
+        loadCountries(updateCountryDiv)
+    }
+
+    function fillSelect(){
+        loadCountries(updateSelect);
+    }
+
+    function updateCountryDiv(xhttp){
+        const countryDiv = document.getElementById("countryDiv");
+        countryDiv.innerHTML = xhttp.responseText;
+    }
+
+    function updateSelect(xhttp){
+        const select = document.getElementById("selectCountry");
+        // Parsiranje JSON odgovora iz xhttp.responseText
+        const countries = JSON.parse(xhttp.responseText);
+
+        // Iteracija kroz listu zemalja i dodavanje u <select> element
+        countries.forEach(country => {
+            const option = document.createElement("option");
+            option.value = country;
+            option.textContent = country;
+            select.appendChild(option);
+        });
+    }
+
+    function loadCountries(callback) {
+        // sync i async
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {callback(this);}
+        xhttp.open("GET", "http://localhost:8080/countries");
+        xhttp.send();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #3498db, #9b59b6);
+    color: white;
+    padding: 20px;
+}
+
+#countryDiv {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+button {
+    background: #2ecc71;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #27ae60;
+}
+
+select {
+    background: white;
+    color: black;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 15px;
+    border: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Animacija za opcije koje se dodaju */
+option {
+    transition: all 0.5s ease;
+}
+
+/* Efekat kada se select mijenja */
+select:focus {
+    outline: none;
+    box-shadow: 0px 0px 10px #f39c12;
+}
