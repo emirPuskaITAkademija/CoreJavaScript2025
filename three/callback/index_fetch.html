@@ -21,36 +21,36 @@
 <p id="errorMessage" style="color: red; display: none;"></p>
 
 <script>
-    function loadOnClick(){
+    function loadOnClick() {
         loadCountries(updateCountryDiv, showError);
     }
 
-    function fillSelect(){
+    function fillSelect() {
         loadCountries(updateSelect, showError);
     }
 
-    function updateCountryDiv(data){
+    function updateCountryDiv(data) {
         const countryDiv = document.getElementById("countryDiv");
         countryDiv.innerHTML = JSON.stringify(data, null, 2);
     }
 
-    function updateSelect(data){
+    function updateSelect(data) {
         const select = document.getElementById("selectCountry");
 
         // Čistimo prethodne opcije (osim prve)
         select.innerHTML = "<option>[none]</option>";
 
         // Iteracija kroz listu zemalja i dodavanje u <select> element
-        data.forEach(country => {
+        data.forEach(objectCountry => {
             const option = document.createElement("option");
-            option.value = country;
-            option.textContent = country;
+            option.value = objectCountry.countryId;
+            option.textContent = objectCountry.country + " " + objectCountry.countryId;
             select.appendChild(option);
         });
     }
 
     function loadCountries(callback, errorCallback) {
-        const promise =  fetch("http://localhost:8080/countries", {
+        const promise = fetch("http://localhost:8080/countries", {
             method: "GET"
         });
 
